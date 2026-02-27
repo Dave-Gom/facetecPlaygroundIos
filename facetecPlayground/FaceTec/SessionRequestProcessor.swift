@@ -19,13 +19,15 @@ import FaceTecSDK
 class SessionRequestProcessor: NSObject, FaceTecSessionRequestProcessor, URLSessionTaskDelegate {
     
     func onFaceTecExit(sessionResult: any FaceTecSessionResult) {
-        
+        print("Error in SessionRequestProcessor.onFaceTecExit")
     }
     
     // onSessionRequest is the core method called by the FaceTec SDK when a request needs to be processed by the FaceTec SDK.
     // Your code must retrieve the Session Request Blob and send to your FaceTec Server.
     // Your code must retrieve the Response Blob from FaceTec Server and call processResponse, passing in the Response Blob.
     func onSessionRequest(sessionRequestBlob: String, sessionRequestCallback: FaceTecSessionRequestProcessorCallback) {
+        
+        print("iniciando request")
         // When you receive a Session Request Blob, call your webservice API that handles this object and passes it to FaceTec Server.
         // SampleAppNetworkingRequest is a demonstration class for making a networking call that passes the Session Request Blob, and handles the response.
         let request = SampleAppNetworkingRequest(referencingProcessor: self, sessionRequestCallback: sessionRequestCallback)
@@ -36,6 +38,7 @@ class SessionRequestProcessor: NSObject, FaceTecSessionRequestProcessor, URLSess
     // Please note that onResponseBlobReceived is a convenience function set up on this class,
     // so that this function can be called asynchronously once you receive the Response Blob.
     func onResponseBlobReceived(responseBlob: String, sessionRequestCallback: FaceTecSessionRequestProcessorCallback) {
+        print("Response geted")
         sessionRequestCallback.processResponse(responseBlob);
     }
     
