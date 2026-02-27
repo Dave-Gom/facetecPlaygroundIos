@@ -1,0 +1,13 @@
+# FaceTec SDK (propietario)
+FaceTecSDKForDevelopment.xcframework/
+FaceTecSDK.xcframework/
+*.xcframework/
+
+# Xcode
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+DerivedData/
+build/
+
+# macOS
+.DS_Store
