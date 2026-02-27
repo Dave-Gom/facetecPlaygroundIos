@@ -6,14 +6,33 @@
 //
 
 import UIKit
+import AVFoundation
+import FaceTecSDK
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, FaceTecInitializeCallback {
+    var facetecSDKInstance: FaceTecSDKInstance?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+      FaceTec.sdk.initializeWithSessionRequest(deviceKeyIdentifier: Config.DeviceKeyIdentifier, sessionRequestProcessor: SessionRequestProcessor(), completion: self)
     }
 
+
+     func onFaceTecSDKInitializeSuccess(sdkInstance: FaceTecSDKInstance) {
+         print("inicializando...")
+         self.facetecSDKInstance = sdkInstance
+         print("inicializado!")
+     }
+
+    func onFaceTecSDKInitializeError(error: FaceTecInitializationError) {
+        print(FaceTec.sdk.description(for: error))
+    }
+
+    @IBAction func StartButtonPressed(_ sender: UIButton) {
+        print("✅ Botón presionado!")
+         let faceTcVC = facetecSDKInstance!.start3DLivenessThen3DFaceMatch(with: SessionRequestProcessor())
+         self.present(faceTcVC, animated: true , completion: nil)
+    }
 
 }
 

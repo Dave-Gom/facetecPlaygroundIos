@@ -23,6 +23,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		13D267D02F51D08900E864AE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		13D267982F51CB7400E864AE /* facetecPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = facetecPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13D267AE2F51CB7500E864AE /* facetecPlaygroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = facetecPlaygroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,11 +52,25 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		13BAA9BD2F52083600237668 /* Exceptions for "facetecPlayground" folder in "Embed Frameworks" phase from "facetecPlayground" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			attributesByRelativePath = {
+				FaceTecSDKForDevelopment.xcframework = (CodeSignOnCopy, RemoveHeadersOnCopy, );
+			};
+			buildPhase = 13D267D02F51D08900E864AE /* Embed Frameworks */;
+			membershipExceptions = (
+				FaceTecSDKForDevelopment.xcframework,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		13D2679A2F51CB7400E864AE /* facetecPlayground */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				13D267C02F51CB7500E864AE /* Exceptions for "facetecPlayground" folder in "facetecPlayground" target */,
+				13BAA9BD2F52083600237668 /* Exceptions for "facetecPlayground" folder in "Embed Frameworks" phase from "facetecPlayground" target */,
 			);
 			path = facetecPlayground;
 			sourceTree = "<group>";
@@ -115,6 +142,7 @@
 				13D267942F51CB7400E864AE /* Sources */,
 				13D267952F51CB7400E864AE /* Frameworks */,
 				13D267962F51CB7400E864AE /* Resources */,
+				13D267D02F51D08900E864AE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -289,9 +317,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2J966F5LZ4;
+				DEVELOPMENT_TEAM = B269738LH2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = facetecPlayground/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We neet to use your camera";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -302,7 +331,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.davegzarca.testapp.testingsIos.facetecPlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mangopayment.mangoapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -321,9 +350,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2J966F5LZ4;
+				DEVELOPMENT_TEAM = B269738LH2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = facetecPlayground/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We neet to use your camera";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -334,7 +364,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.davegzarca.testapp.testingsIos.facetecPlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mangopayment.mangoapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
