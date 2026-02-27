@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import FaceTecSDK
 
 class Custom3DLivenessView: UIView {
 
@@ -21,9 +22,12 @@ class Custom3DLivenessView: UIView {
         return layer as! AVCaptureVideoPreviewLayer
     }
 
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCamera()
+        // Create and launch the View Controller for a 3D Liveness Check
+
     }
 
     required init?(coder: NSCoder) {
@@ -61,6 +65,10 @@ class Custom3DLivenessView: UIView {
         } catch {
             print("Error initializing camera: \(error)")
         }
+    }
+    
+    private func sendFrameToFacetec(sampleBuffer: CMSampleBuffer) {
+        
     }
 
     deinit {

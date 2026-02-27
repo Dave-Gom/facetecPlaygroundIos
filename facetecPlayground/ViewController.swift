@@ -10,7 +10,8 @@ import FaceTecSDK
 class ViewController: UIViewController, FaceTecInitializeCallback {
 
     var facetecSDKInstance: FaceTecSDKInstance?
-    var livenessView: Custom3DLivenessView?
+    var containerView: UIView?
+    var faceTecVC: UIViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,24 +39,48 @@ class ViewController: UIViewController, FaceTecInitializeCallback {
 
     @IBAction func StartButtonPressed(_ sender: UIButton) {
 
-        print("✅ Botón presionado!")
-
-        guard facetecSDKInstance != nil else {
+        guard let sdkInstance = facetecSDKInstance else {
             print("SDK no inicializado")
             return
         }
 
-        requestCameraPermission { [weak self] granted in
-            guard let self = self else { return }
+        // Crear contenedor si no existe
+        if containerView == nil {
+            let container = UIView()
+            container.translatesAutoresizingMaskIntoConstraints = false
+            container.backgroundColor = .black
 
-            if granted {
-                DispatchQueue.main.async {
-                    self.showLivenessView()
-                }
-            } else {
-                print("❌ Permiso de cámara denegado")
-            }
+            view.addSubview(container)
+
+            NSLayoutConstraint.activate([
+                container.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                container.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                container.topAnchor.constraint(equalTo: view.topAnchor),
+                container.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+
+            containerView = container
         }
+
+        guard let container = containerView else { return }
+
+        //  Crear FaceTec VC
+        let faceTec = sdkInstance.start3DLiveness(with: SessionRequestProcessor())
+        faceTec.title = ""
+        faceTec.editButtonItem.title = "Custom text"
+        var button = UIButton()
+        button.titleLabel?.text = "Custom text"
+        button.addTarget(self, action: #selector(StartButtonPressed(_:)), for: .touchUpInside)
+        faceTec.view.addSubview(button)
+
+        // Containment correcto
+        addChild(faceTec)
+        container.addSubview(faceTec.view)
+        faceTec.view.frame = container.bounds
+        faceTec.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        faceTec.didMove(toParent: self)
+
+        self.faceTecVC = faceTec
     }
 
     // MARK: - Camera Permission
@@ -78,32 +103,5 @@ class ViewController: UIViewController, FaceTecInitializeCallback {
         @unknown default:
             completion(false)
         }
-    }
-
-    // MARK: - Show Camera View
-
-    private func showLivenessView() {
-
-        if livenessView != nil { return }
-
-        print("Creando Custom3DLivenessView...")
-
-        let customView = Custom3DLivenessView()
-        customView.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(customView)
-
-        NSLayoutConstraint.activate([
-            customView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            customView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            customView.topAnchor.constraint(equalTo: view.topAnchor),
-            customView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-
-        view.bringSubviewToFront(customView)
-
-        livenessView = customView
-
-        print("✅ LivenessView agregada a pantalla")
     }
 }
