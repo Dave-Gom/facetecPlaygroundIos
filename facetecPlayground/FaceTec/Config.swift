@@ -33,7 +33,7 @@ class Config {
     // REQUIRED
     // Available at https://dev.facetec.com/account
     // NOTE: This field is auto-populated by the FaceTec SDK Configuration Wizard.
-    static let DeviceKeyIdentifier = ""
+    static let DeviceKeyIdentifier = "duPBTVmH4QaD5XJxtewGAxIGapPaYBr7"
 
     // -------------------------------------
     // REQUIRED

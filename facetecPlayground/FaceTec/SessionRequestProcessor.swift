@@ -17,9 +17,12 @@ import FaceTecSDK
 // - Adding additional asynchronous calls to this code is not allowed.  Only make your own additional asynchronous calls once the FaceTec UI is closed.
 // - Adding code that modifies any App UI (Yours or FaceTec's) is not allowed.  Only add code that modifies your own App UI once the FaceTec UI is closed.
 class SessionRequestProcessor: NSObject, FaceTecSessionRequestProcessor, URLSessionTaskDelegate {
-    
+
+    // Closure para comunicar el resultado al ViewController
+    var onComplete: ((FaceTecSessionResult) -> Void)?
+
     func onFaceTecExit(sessionResult: any FaceTecSessionResult) {
-        print("Error in SessionRequestProcessor.onFaceTecExit")
+        onComplete?(sessionResult)
     }
     
     // onSessionRequest is the core method called by the FaceTec SDK when a request needs to be processed by the FaceTec SDK.

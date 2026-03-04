@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		13EE89732F5857B100B9AFC0 /* FaceTecSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13EE89712F5857A800B9AFC0 /* FaceTecSDK.xcframework */; };
+		13EE89742F5857B100B9AFC0 /* FaceTecSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13EE89712F5857A800B9AFC0 /* FaceTecSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		13D267AF2F51CB7500E864AE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -30,6 +35,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				13EE89742F5857B100B9AFC0 /* FaceTecSDK.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -40,6 +46,7 @@
 		13D267982F51CB7400E864AE /* facetecPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = facetecPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13D267AE2F51CB7500E864AE /* facetecPlaygroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = facetecPlaygroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13D267B82F51CB7500E864AE /* facetecPlaygroundUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = facetecPlaygroundUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		13EE89712F5857A800B9AFC0 /* FaceTecSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FaceTecSDK.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -52,25 +59,11 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		13BAA9BD2F52083600237668 /* Exceptions for "facetecPlayground" folder in "Embed Frameworks" phase from "facetecPlayground" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			attributesByRelativePath = {
-				FaceTecSDKForDevelopment.xcframework = (CodeSignOnCopy, RemoveHeadersOnCopy, );
-			};
-			buildPhase = 13D267D02F51D08900E864AE /* Embed Frameworks */;
-			membershipExceptions = (
-				FaceTecSDKForDevelopment.xcframework,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		13D2679A2F51CB7400E864AE /* facetecPlayground */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				13D267C02F51CB7500E864AE /* Exceptions for "facetecPlayground" folder in "facetecPlayground" target */,
-				13BAA9BD2F52083600237668 /* Exceptions for "facetecPlayground" folder in "Embed Frameworks" phase from "facetecPlayground" target */,
 			);
 			path = facetecPlayground;
 			sourceTree = "<group>";
@@ -92,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13EE89732F5857B100B9AFC0 /* FaceTecSDK.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +113,7 @@
 				13D267B12F51CB7500E864AE /* facetecPlaygroundTests */,
 				13D267BB2F51CB7500E864AE /* facetecPlaygroundUITests */,
 				13D267992F51CB7400E864AE /* Products */,
+				13EE89712F5857A800B9AFC0 /* FaceTecSDK.xcframework */,
 			);
 			sourceTree = "<group>";
 		};

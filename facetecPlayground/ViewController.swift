@@ -4,104 +4,40 @@
 //
 
 import UIKit
-import AVFoundation
 import FaceTecSDK
 
-class ViewController: UIViewController, FaceTecInitializeCallback {
+class ViewController: UIViewController, FaceTecLivenessButtonDelegate {
 
-    var facetecSDKInstance: FaceTecSDKInstance?
-    var containerView: UIView?
-    var faceTecVC: UIViewController?
+    private var livenessButton: FaceTecLivenessButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        FaceTec.sdk.initializeWithSessionRequest(
-            deviceKeyIdentifier: Config.DeviceKeyIdentifier,
-            sessionRequestProcessor: SessionRequestProcessor(),
-            completion: self
-        )
+        setupLivenessButton()
     }
 
-    // MARK: - FaceTec Init
+    private func setupLivenessButton() {
+        livenessButton = FaceTecLivenessButton()
+        livenessButton.translatesAutoresizingMaskIntoConstraints = false
+        livenessButton.delegate = self
 
-    func onFaceTecSDKInitializeSuccess(sdkInstance: FaceTecSDKInstance) {
-        print("inicializando...")
-        self.facetecSDKInstance = sdkInstance
-        print("inicializado!")
+        view.addSubview(livenessButton)
+
+        NSLayoutConstraint.activate([
+            livenessButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            livenessButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            livenessButton.widthAnchor.constraint(equalToConstant: 220),
+            livenessButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
 
-    func onFaceTecSDKInitializeError(error: FaceTecInitializationError) {
-        print(FaceTec.sdk.description(for: error))
-    }
+    // MARK: - FaceTecLivenessButtonDelegate
 
-    // MARK: - Button Action
-
-    @IBAction func StartButtonPressed(_ sender: UIButton) {
-
-        guard let sdkInstance = facetecSDKInstance else {
-            print("SDK no inicializado")
-            return
-        }
-
-        // Crear contenedor si no existe
-        if containerView == nil {
-            let container = UIView()
-            container.translatesAutoresizingMaskIntoConstraints = false
-            container.backgroundColor = .black
-
-            view.addSubview(container)
-
-            NSLayoutConstraint.activate([
-                container.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                container.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                container.topAnchor.constraint(equalTo: view.topAnchor),
-                container.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
-
-            containerView = container
-        }
-
-        guard let container = containerView else { return }
-
-        //  Crear FaceTec VC
-        let faceTec = sdkInstance.start3DLiveness(with: SessionRequestProcessor())
-        faceTec.title = ""
-        faceTec.editButtonItem.title = "Custom text"
-        var button = UIButton()
-        button.titleLabel?.text = "Custom text"
-        button.addTarget(self, action: #selector(StartButtonPressed(_:)), for: .touchUpInside)
-        faceTec.view.addSubview(button)
-
-        // Containment correcto
-        addChild(faceTec)
-        container.addSubview(faceTec.view)
-        faceTec.view.frame = container.bounds
-        faceTec.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        faceTec.didMove(toParent: self)
-
-        self.faceTecVC = faceTec
-    }
-
-    // MARK: - Camera Permission
-
-    private func requestCameraPermission(completion: @escaping (Bool) -> Void) {
-
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
-
-        case .authorized:
-            completion(true)
-
-        case .notDetermined:
-            AVCaptureDevice.requestAccess(for: .video) { granted in
-                completion(granted)
-            }
-
-        case .denied, .restricted:
-            completion(false)
-
-        @unknown default:
-            completion(false)
+    func faceTecLivenessDidComplete(success: Bool, result: FaceTecSessionResult?) {
+        if success {
+            print("Prueba de vida exitosa!")
+            // Aquí puedes navegar a otra pantalla o hacer algo con el resultado
+        } else {
+            print("Prueba de vida fallida o cancelada")
         }
     }
 }
